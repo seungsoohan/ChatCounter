@@ -11,8 +11,7 @@ import java.util.regex.Pattern;
  */
 public class MacParser extends MessageParser{
 	/**
-	 * This method parse csv file and store parsing data to messageW array list
-	 * so it can make integrate all message
+	 * This class is made to parse csv file
 	 */
 	public void structurist(String line) {
 		
@@ -44,7 +43,7 @@ public class MacParser extends MessageParser{
 
 	}
 	/**
-	 * this method used by FileLoader class to check line useful
+	 * If the date format is correctly aligned in the sentence, add it.
 	 */
 	public String sortingWithTime(String line) {
 		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][0-9]\\s)([0-2][0-9]:[0-5][0-9])(:[0-5][0-9])(\\,\")(.*)(\"\\,)(\")(.*)");

@@ -35,7 +35,7 @@ public class Runner {
 		
 		try {
 			loader.readAbsolutePath(AbsolutePathname);
-			fWriter.showResult(OutputName, AbsolutePathname);
+			fWriter.showResult(OutputName);
 		}
 		catch (ArrayIndexOutOfBoundsException e){
 			System.out.println("Error: Missing Directory or Inputting output filename");

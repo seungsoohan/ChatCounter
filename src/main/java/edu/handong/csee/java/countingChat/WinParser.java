@@ -11,8 +11,8 @@ import java.util.regex.Pattern;
  */
 public class WinParser extends MessageParser{
 	/**
-	 * This method parse txt file and store parsing data to messageW array list
-	 * so it can make integrate all message
+	 * WinParse parse txt file and save data to messageW array list
+	 * 
 	 */
 
 
@@ -48,7 +48,7 @@ public class WinParser extends MessageParser{
 			messageW.add(fullMessage);
 	}
 	/**
-	 * this method used by FileLoader class to check line useful
+	 * If the date format is correctly aligned in the sentence, add it.
 	 */
 	public String sortingWithTime(String line) {
 		Pattern nameP = Pattern.compile("(\\[)((?:\\D|\\d)+)(\\])(\\s\\[(.*(?:\\d{1}|\\d{2}):\\d{2}).*\\])((\\s)(.*))");
@@ -80,7 +80,7 @@ public class WinParser extends MessageParser{
 		
 		if(dateM1.find()) {
 			String ap = dateM1.group(1);
-			if(ap.equals("¿ÀÀü")) {
+			if(ap.equals("ì˜¤ì „")) {
 				currentHourK = Integer.parseInt(dateM1.group(3));
 				if(Integer.parseInt(dateM1.group(3))<10) {
 					fullTime1 = "0"+currentHourK+":"+dateM1.group(5);
@@ -89,7 +89,7 @@ public class WinParser extends MessageParser{
 				else return currentHourK+":"+dateM1.group(5);
 				
 			}
-			else if(ap.equals("¿ÀÈÄ")) {
+			else if(ap.equals("ì˜¤í›„")) {
 				currentHourK = Integer.parseInt(dateM1.group(3))+12;
 				if(currentHourK == 24) return "12"+":"+dateM1.group(5);
 				else {

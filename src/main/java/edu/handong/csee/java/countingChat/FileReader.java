@@ -34,15 +34,15 @@ public void readAbsolutePath(String pathname) {
 				if(filename.contains(".txt")){
 					while(input.hasNextLine()) {
 						String line = input.nextLine();
-						if(!macParser.sortingWithTime(line).equals("")) 
-							macParser.structurist(line); 
+						if(!winParser.sortingWithTime(line).equals("")) 
+							winParser.structurist(line); 
 					}
 				}
 				
 				else if(filename.contains(".csv")) {
 					while(input.hasNextLine()) {
 						String line = input.nextLine();
-						winParser.structurist(line); 
+						macParser.structurist(line); 
 					}
 				}
 				

@@ -5,19 +5,18 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 /**
- * This class make file that given from user path store result of data
+ * OutputResultMaker class makes output file
+ * list all files
+ * 
  * 
  *
  */
 public class OutputResultMaker {
 	/**
-	 * get store path and store data to the file
-	 * data get from NameAdder class
-	 * if you typing wrong it print out Error message
-	 * but, you good path print out Those lines were written to your path
-	 * @param args1 
+	 * Load database and write
+	 * make output file
 	 */
-	public void showResult(String args1, String args2) {
+	public void showResult(String args1) {
 		
 		MessagesData MD = new MessagesData();
 		HashMap<String,Integer> map = MD.count();
@@ -46,7 +45,7 @@ public class OutputResultMaker {
 		output.close();
 		keyboard.close();
 		
-		System.out.println ("The result file is stored at " + args2);
+		System.out.println ("The result file is stored at ChatCounter");
 
 	}
 }

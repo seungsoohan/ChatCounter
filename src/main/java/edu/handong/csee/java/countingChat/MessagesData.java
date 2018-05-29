@@ -6,66 +6,55 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
- * This class will calculate how many times say in kakaoTalk
- * totalMss1 save all of message and 2 remove same lines talking at same time
- * kakao_id array have id just one time and this make name array 
- * whole_id arraylist have all id of totalMss2
- * last counter hashmap has key that save name, and value that save how many times talking on kakaoTalk0  
- * 
+ * Database material I created
+ * Various information is managed by array list and hash map.
  *
  */
 public class MessagesData {
 	/**
-	 * totalMss1 arraylist1 save all message except overlaping data
+	 * rawMessage saves all message
 	 */
-	ArrayList<String> totalMss1 =new ArrayList<String>();
+	ArrayList<String> rawMessage =new ArrayList<String>();
+	
 	/**
-	 * kakao_id arraylist save kakao_id (id store just once)
+	 *  kakao_id Arraylist save kakao_id
 	 */
 	ArrayList<String> id = new ArrayList<String>();
+	
 	/**
-	 * whole_id arraylist save all emerged id from tatalMss1
+	 * whole_id Arraylist save kakao_id + rawMessage
 	 */
 	ArrayList<String> whole_id = new ArrayList<String>();
+	
 	/**
-	 * name array use for counting how use kakao
-	 */
-	String[] name = new String[id.size()];
-	/**
-	 * counter hashmap save id(key),counting number(value)->sorted result
+	 * HaspMap
 	 */
 	HashMap<String, Integer> counter = new HashMap<String, Integer>();
 	
+	
 	/**
-	 * this will method return counter hashmap to FileWriter class
-	 * @return
-	 */
-	public HashMap<String,Integer> count(){
-		return counter;
-	}
-	/**
-	 * this method for countname and store name and counting array (sort result)
+	 * sorting result method
 	 */
 	public String[] countName() {
-		storeMessageToOne();
+		saveMessageToOnePoint();
 		int count=0;
 		
 		String[] name = new String[id.size()];
 		id.toArray(name);
 		
-		for(int i=0;i<name.length;i++) {
-			count=0;
-			for(String j:whole_id) {
-				if(j.equals(name[i]))
+		for(int i = 0; i < name.length; i++) {
+			count = 0;
+			for(String k:whole_id) {
+				if(k.equals(name[i]))
 					count++;
 			}
 			
 			counter.put(name[i],count);
 		}
 		
-		for(int j=0;j<name.length;j++) {
+		for(int j = 0; j < name.length; j++) {
 			String temp = "";
-			for(int i=j;i<name.length-1;i++) {
+			for(int i=j ; i < name.length-1; i++) {
 				if(counter.get(name[j]).compareTo(counter.get(name[i+1]))<=0) {
 					temp = name[j];
 					name[j]=name[i+1];
@@ -73,35 +62,40 @@ public class MessagesData {
 				}
 			}	
 		}
-		
 		return name;
 	}
 	
-	private void storeMessageToOne() {
+	private void saveMessageToOnePoint() {
 	
-		String change="";
-		
-		for(String n:MessageParser.messageM) {
-			if(!totalMss1.contains(n))
-			totalMss1.add(n);
-		}
+		String changeException="";
+		String changePhoto="";
 		
 		for(String w:MessageParser.messageW) {
-			if(w.contains("\"\"")) {
-				change=w.replace("\"\"", "\"");
-				if(!totalMss1.contains(change))
-					totalMss1.add(change);
+			changePhoto=w.replace("사진", "Photo");
+			
+			if(!rawMessage.contains(changePhoto))
+			rawMessage.add(changePhoto);
+			
+		}
+		
+		for(String m:MessageParser.messageM) {
+			changePhoto=m.replace("사진", "Photo");
+			
+			if(changePhoto.contains("\"\"")) {
+				changeException=m.replace("\"\"", "\"");
+				if(!rawMessage.contains(changeException))
+					rawMessage.add(changeException);
 			}
 			else {
-				if(!totalMss1.contains(w));
-					totalMss1.add(w);
+				if(!rawMessage.contains(m));
+					rawMessage.add(m);
 			}
 			
 		}
 
-		for(String out2:totalMss1) {
-			naming(out2);
-			totalName(out2);
+		for(String outx:rawMessage) {
+			naming(outx);
+			totalName(outx);
 		}
 	}
 	
@@ -134,6 +128,14 @@ public class MessagesData {
 			
 			whole_id.add(justName);
 		}
+	}
+	
+	/**
+	 * return counter
+	 * @return
+	 */
+	public HashMap<String,Integer> count(){
+		return counter;
 	}
 }
 
