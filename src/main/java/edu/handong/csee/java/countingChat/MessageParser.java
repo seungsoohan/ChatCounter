@@ -14,12 +14,12 @@ public class MessageParser {
 	protected String fullString="";
 	
 	/**
-	 * messageM arraylist will store txt parsing data
+	 * messageM arraylist will store csv parsing data
 	 */
 	static ArrayList<String> messageM = new ArrayList<String>();
 	
 	/**
-	 * messageW arraylist save data from csv file
+	 * messageW arraylist save data from txt file
 	 */
 	static ArrayList<String> messageW = new ArrayList<String>();
 	

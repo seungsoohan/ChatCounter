@@ -26,29 +26,29 @@ public void readAbsolutePath(String pathname) {
 				
 		for (File temp:fnames) {
 			System.out.println("File lists: " + temp);
-			String name = temp.toString();
+			String filename = temp.toString();
 
 			try {
-				input=new Scanner(new File(name));
+				input=new Scanner(new File(filename));
 				
-				if(name.contains(".csv")) {
+				if(filename.contains(".txt")){
 					while(input.hasNextLine()) {
 						String line = input.nextLine();
-						winParser.parsingAndStore(line); 
+						if(!macParser.sortingWithTime(line).equals("")) 
+							macParser.structurist(line); 
 					}
 				}
-					
-				else if(name.contains(".txt")){
+				
+				else if(filename.contains(".csv")) {
 					while(input.hasNextLine()) {
 						String line = input.nextLine();
-						if(!macParser.selectData(line).equals("")) 
-							macParser.parsingAndStore(line); 
+						winParser.structurist(line); 
 					}
 				}
 				
 				
 			} catch (FileNotFoundException e) {
-				System.out.println ("Error opening the file " + name);
+				System.out.println ("Error opening the file " + filename);
 	            System.exit (0);
 			}
 		}

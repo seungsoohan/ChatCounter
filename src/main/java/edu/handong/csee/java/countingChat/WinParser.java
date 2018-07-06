@@ -16,7 +16,7 @@ public class WinParser extends MessageParser{
 	 */
 
 
-	public void parsingAndStore(String line) {
+	public void structurist(String line) {
 		
 		Pattern nameP = Pattern.compile("(\\[)((?:\\D|\\d)+)(\\])(\\s\\[(.*)\\])((\\s)(.*))");
 		Matcher nameM = nameP.matcher(line);
@@ -44,13 +44,13 @@ public class WinParser extends MessageParser{
 		
 		
 		String fullMessage = "\""+pName+"\""+", "+"\""+cutTime(fullDate)+"\""+", "+"\""+wMessage+"\"";
-		if(!messageM.contains(fullMessage))	
-			messageM.add(fullMessage);
+		if(!messageW.contains(fullMessage))	
+			messageW.add(fullMessage);
 	}
 	/**
 	 * this method used by FileLoader class to check line useful
 	 */
-	public String selectData(String line) {
+	public String sortingWithTime(String line) {
 		Pattern nameP = Pattern.compile("(\\[)((?:\\D|\\d)+)(\\])(\\s\\[(.*(?:\\d{1}|\\d{2}):\\d{2}).*\\])((\\s)(.*))");
 		Matcher nameM = nameP.matcher(line);
 		String pName="";

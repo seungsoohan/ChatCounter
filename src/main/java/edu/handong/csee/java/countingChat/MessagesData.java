@@ -3,8 +3,6 @@ package edu.handong.csee.java.countingChat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.SortedSet;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
@@ -80,18 +78,15 @@ public class MessagesData {
 	}
 	
 	private void storeMessageToOne() {
-		MacParser mac = new MacParser();
-		WinParser windows = new WinParser();
-		
+	
 		String change="";
-		String deleteWhiteSpace="";
 		
-		for(String n:mac.messageM) {
+		for(String n:MessageParser.messageM) {
 			if(!totalMss1.contains(n))
 			totalMss1.add(n);
 		}
 		
-		for(String w:windows.messageW) {
+		for(String w:MessageParser.messageW) {
 			if(w.contains("\"\"")) {
 				change=w.replace("\"\"", "\"");
 				if(!totalMss1.contains(change))

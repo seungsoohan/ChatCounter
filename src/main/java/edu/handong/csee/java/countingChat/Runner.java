@@ -31,6 +31,8 @@ public class Runner {
 		System.out.println("Desired Ouput filename: ");
 		OutputName = keyboard.nextLine();
 		
+		keyboard.close();
+		
 		try {
 			loader.readAbsolutePath(AbsolutePathname);
 			fWriter.showResult(OutputName, AbsolutePathname);

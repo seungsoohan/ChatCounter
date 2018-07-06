@@ -14,10 +14,10 @@ public class MacParser extends MessageParser{
 	 * This method parse csv file and store parsing data to messageW array list
 	 * so it can make integrate all message
 	 */
-	public void parsingAndStore(String line) {
+	public void structurist(String line) {
 		
 
-		Pattern nameP = Pattern.compile("(\\d+-\\d+-\\d+\\s)(\\d+:\\d+)(:\\d+)(\\,\")(.*)(\"\\,)(\")(.*)");
+		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][0-9]\\s)([0-2][0-9]:[0-5][0-9])(:[0-5][0-9])(\\,\")(.*)(\"\\,)(\")(.*)");
 		
 		Matcher nameM = nameP.matcher(line);
 		
@@ -37,8 +37,8 @@ public class MacParser extends MessageParser{
 			fullTime = patternName.substring(firstD,lastD);
 			fullString="\""+pName+"\""+", "+"\""+fullTime+"\""+", "+"\""+wMessage+"\"";
 			
-			if(!messageW.contains(fullString))
-			messageW.add(fullString);
+			if(!messageM.contains(fullString))
+			messageM.add(fullString);
 		}
 
 
@@ -46,7 +46,7 @@ public class MacParser extends MessageParser{
 	/**
 	 * this method used by FileLoader class to check line useful
 	 */
-	public String selectData(String line) {
+	public String sortingWithTime(String line) {
 		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][0-9]\\s)([0-2][0-9]:[0-5][0-9])(:[0-5][0-9])(\\,\")(.*)(\"\\,)(\")(.*)");
 		Matcher nameM = nameP.matcher(line);
 		String pName="";
